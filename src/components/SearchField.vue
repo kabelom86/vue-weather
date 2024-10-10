@@ -10,6 +10,7 @@ const searchTerm = reactive({
 });
 
 const handleSearch = () => {
+    // delay the capturing of the input data to allow user time to type
     clearTimeout(searchTerm.timeout);
     searchTerm.timeout = setTimeout(async () => {
         if (searchTerm.query !== '') {
