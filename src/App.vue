@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import SearchField from '@/components/SearchField.vue';
+import WeatherCard from '@/components/WeatherCard.vue';
 
 const places = ref([]);
 
@@ -27,6 +28,11 @@ const addPlace = ((data) => {
     <!-- Search Field -->
     <div>
       <SearchField @place-data="addPlace" />
+    </div>
+
+    <!-- Weather cards -->
+    <div v-for="(place, idx) in places" :key="idx">
+      <WeatherCard :place="place" />
     </div>
   </main>
 </template>
