@@ -7,7 +7,7 @@ defineProps({
 </script>
 
 <template>
-    <div class="text-white p-10 rounded-lg shadow-lg gap-6 mb-6 relative overflow-hidden">
+    <div class="text-white p-10 rounded-lg shadow-lg gap-6 mb-6 relative overflow-hidden bg-blue-500">
         <!-- Location & time -->
         <div class="mb-2 flex justify-between items-center">
             <div class="flex items-center justify-center gap-2">

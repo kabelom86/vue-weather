@@ -25,7 +25,7 @@ const handleSearch = () => {
 };
 
 const getWeather = (async (id) => {
-    const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=157c0f0cf591453794660316241010&q=:id${id}&days=3&aqi=no&alerts=no`);
+    const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=157c0f0cf591453794660316241010&q=id:${id}&days=3&aqi=no&alerts=no`);
 
     const data = await response.json();
 
