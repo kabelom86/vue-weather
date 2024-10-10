@@ -1,5 +1,14 @@
 <script setup>
+import { ref } from 'vue';
 import SearchField from '@/components/SearchField.vue';
+
+const places = ref([]);
+
+const addPlace = ((data) => {
+  places.value.push(data);
+  console.log(places);
+});
+
 </script>
 
 <template>
@@ -16,6 +25,8 @@ import SearchField from '@/components/SearchField.vue';
       }}
     </div>
     <!-- Search Field -->
-    <SearchField />
+    <div>
+      <SearchField @place-data="addPlace" />
+    </div>
   </main>
 </template>
