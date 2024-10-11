@@ -1,14 +1,26 @@
 <script setup>
+import { ref } from 'vue';
 import BorderLine from './BorderLine.vue';
 import WeatherForecastDay from './WeatherForecastDay.vue';
+import WeatherInfo from './WeatherInfo.vue';
 
 defineProps({
     place: Object
+});
+
+const showMore = ref(false);
+
+const emit = defineEmits(['delete-place']);
+
+const deletePlace = ((placeName) => {
+    emit('delete-place', placeName);
+    showMore.value = false;
 })
 </script>
 
 <template>
-    <div class="text-white p-10 rounded-lg shadow-lg gap-6 mb-6 relative overflow-hidden bg-blue-500">
+    <div :class="place.current.is_day === 0 ? 'bg-night' : 'bg-day'"
+        class="text-white p-10 rounded-lg shadow-lg gap-6 mb-6 relative overflow-hidden bg-blue-500">
         <!-- Location & time -->
         <div class="mb-2 flex justify-between items-center">
             <div class="flex items-center justify-center gap-2">
@@ -39,13 +51,26 @@ defineProps({
         </div>
 
         <!-- info -->
-        <div>
-            <!-- Weather info component goes here -->
+        <div v-show="showMore">
+            <WeatherInfo :place="place" @close-more="showMore = false"
+                @remove-place="deletePlace(place.location.name)" />
         </div>
 
         <!-- forecast btn -->
         <div class="flex justify-end items-center gap-1 mt-10">
-            <button>More <i class="fa-solid fa-arrow-right text-sm -mb-px"></i></button>
+            <button @click="showMore = true">More <i class="fa-solid fa-arrow-right text-sm -mb-px"></i></button>
         </div>
     </div>
 </template>
+
+<style scoped>
+.bg-day {
+    background-color: #8ec5fc;
+    background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+}
+
+.bg-night {
+    background-color: #07223d;
+    background-image: linear-gradient(62deg, #0a2a4a, #270845 100%);
+}
+</style>
